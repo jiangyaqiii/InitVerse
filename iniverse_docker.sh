@@ -19,5 +19,6 @@ fi
 
 echo ''
 echo '启动新容器'
-docker run -d --name iniverse-contain -e PATH="/root/.local/bin:$PATH" -e addr="$addr" -w /root ubuntu:22.04 /bin/bash -c "apt-get update && apt-get install -y wget && wget -O iniverse_start.sh https://raw.githubusercontent.com/jiangyaqiii/InitVerse/main/iniverse_start.sh && chmod +x iniverse_start.sh &&./iniverse_start.sh"
+random_num=$((RANDOM % 10000))
+docker run -d --name iniverse-contain -e PATH="/root/.local/bin:$PATH" -e addr=$addr -e random_num=$random_num -w /root ubuntu:22.04 /bin/bash -c "apt-get update && apt-get install -y wget && wget -O iniverse_start.sh https://raw.githubusercontent.com/jiangyaqiii/InitVerse/main/iniverse_start.sh && chmod +x iniverse_start.sh &&./iniverse_start.sh"
 rm -f iniverse_docker.sh
